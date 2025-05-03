@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 30% 94%;
+    --foreground: 20 10% 20%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 20 10% 20%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 10% 20%;
+    
+    --primary: 120 35% 23%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 45 100% 50%;
+    --secondary-foreground: 120 35% 23%;
+    
+    --muted: 60 20% 96%;
+    --muted-foreground: 20 10% 40%;
+    
+    --accent: 55 92% 95%;
+    --accent-foreground: 120 35% 23%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 20 10% 90%;
+    --input: 20 10% 90%;
+    --ring: 45 100% 50%;
+    
+    --radius: 0.5rem;
+    
+    /* Zenji Theme Colors */
+    --jungle-green: 120 35% 23%;
+    --leaf-green: 150 45% 36%;
+    --earth-brown: 25 70% 31%;
+    --zen-gold: 45 100% 50%;
+    --bamboo-light: 60 30% 94%;
+    --mystic-purple: 275 22% 30%;
+    --water-blue: 200 47% 44%;
+    --fire-red: 6 65% 50%;
+  }
+
+  .dark {
+    --background: 20 10% 10%;
+    --foreground: 60 30% 94%;
+    
+    --card: 20 10% 15%;
+    --card-foreground: 60 30% 94%;
+    
+    --popover: 20 10% 15%;
+    --popover-foreground: 60 30% 94%;
+    
+    --primary: 120 35% 20%;
+    --primary-foreground: 60 30% 94%;
+    
+    --secondary: 45 100% 50%;
+    --secondary-foreground: 20 10% 10%;
+    
+    --muted: 20 10% 20%;
+    --muted-foreground: 60 30% 80%;
+    
+    --accent: 120 35% 30%;
+    --accent-foreground: 60 30% 94%;
+    
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 20 10% 25%;
+    --input: 20 10% 25%;
+    --ring: 45 100% 50%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-cinzel;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom Font Classes */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Custom Theme Classes */
+.bg-jungle-green {
+  background-color: hsl(var(--jungle-green));
+}
+
+.text-jungle-green {
+  color: hsl(var(--jungle-green));
+}
+
+.bg-leaf-green {
+  background-color: hsl(var(--leaf-green));
+}
+
+.text-leaf-green {
+  color: hsl(var(--leaf-green));
+}
+
+.bg-earth-brown {
+  background-color: hsl(var(--earth-brown));
+}
+
+.text-earth-brown {
+  color: hsl(var(--earth-brown));
+}
+
+.bg-zen-gold {
+  background-color: hsl(var(--zen-gold));
+}
+
+.text-zen-gold {
+  color: hsl(var(--zen-gold));
+}
+
+.bg-bamboo-light {
+  background-color: hsl(var(--bamboo-light));
+}
+
+.text-bamboo-light {
+  color: hsl(var(--bamboo-light));
+}
+
+.bg-mystic-purple {
+  background-color: hsl(var(--mystic-purple));
+}
+
+.text-mystic-purple {
+  color: hsl(var(--mystic-purple));
+}
+
+.bg-water-blue {
+  background-color: hsl(var(--water-blue));
+}
+
+.text-water-blue {
+  color: hsl(var(--water-blue));
+}
+
+.bg-fire-red {
+  background-color: hsl(var(--fire-red));
+}
+
+.text-fire-red {
+  color: hsl(var(--fire-red));
+}
+
+/* Background Gradients */
+.bg-gradient-jungle {
+  background: linear-gradient(to bottom, hsl(var(--jungle-green)), hsl(var(--mystic-purple)));
+}
+
+.bg-gradient-zen {
+  background: linear-gradient(to bottom, hsl(var(--bamboo-light)), white);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+/* Game-specific styles */
+.card-shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-flip {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.card-flip-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-flip:hover .card-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.card-flip-front, .card-flip-back {
+  backface-visibility: hidden;
+}
+
+.card-flip-back {
+  transform: rotateY(180deg);
+}
