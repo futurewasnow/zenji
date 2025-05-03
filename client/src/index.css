@@ -4,75 +4,77 @@
 
 @layer base {
   :root {
+    /* Improved contrast for light theme */
     --background: 60 30% 94%;
-    --foreground: 20 10% 20%;
+    --foreground: 20 10% 15%; /* Darker for better contrast */
     
     --card: 0 0% 100%;
-    --card-foreground: 20 10% 20%;
+    --card-foreground: 20 10% 15%; /* Darker for better contrast */
     
     --popover: 0 0% 100%;
-    --popover-foreground: 20 10% 20%;
+    --popover-foreground: 20 10% 15%; /* Darker for better contrast */
     
-    --primary: 120 35% 23%;
+    --primary: 120 38% 20%; /* Slightly darker for better contrast */
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 45 100% 50%;
-    --secondary-foreground: 120 35% 23%;
+    --secondary: 45 100% 45%; /* Slightly darker gold for better contrast against white */
+    --secondary-foreground: 120 38% 18%; /* Darker for better contrast */
     
     --muted: 60 20% 96%;
-    --muted-foreground: 20 10% 40%;
+    --muted-foreground: 20 10% 30%; /* Darker for better contrast */
     
-    --accent: 55 92% 95%;
-    --accent-foreground: 120 35% 23%;
+    --accent: 55 92% 90%;
+    --accent-foreground: 120 38% 20%; /* Darker for better contrast */
     
-    --destructive: 0 84% 60%;
+    --destructive: 0 84% 50%; /* Darker red for better contrast */
     --destructive-foreground: 0 0% 100%;
     
-    --border: 20 10% 90%;
-    --input: 20 10% 90%;
-    --ring: 45 100% 50%;
+    --border: 20 10% 85%;
+    --input: 20 10% 85%;
+    --ring: 45 100% 40%; /* Darker for better contrast */
     
     --radius: 0.5rem;
     
-    /* Zenji Theme Colors */
-    --jungle-green: 120 35% 23%;
-    --leaf-green: 150 45% 36%;
-    --earth-brown: 25 70% 31%;
-    --zen-gold: 45 100% 50%;
+    /* Improved Zenji Theme Colors with better contrast */
+    --jungle-green: 120 40% 20%; /* Darker for better contrast */
+    --leaf-green: 150 45% 30%; /* Darker for better contrast */
+    --earth-brown: 25 70% 28%; /* Darker for better contrast */
+    --zen-gold: 45 100% 45%; /* Darker for better contrast */
     --bamboo-light: 60 30% 94%;
-    --mystic-purple: 275 22% 30%;
-    --water-blue: 200 47% 44%;
-    --fire-red: 6 65% 50%;
+    --mystic-purple: 275 30% 25%; /* Adjusted for better contrast */
+    --water-blue: 200 50% 40%; /* Adjusted for better contrast */
+    --fire-red: 6 75% 45%; /* Adjusted for better contrast */
   }
 
   .dark {
-    --background: 20 10% 10%;
-    --foreground: 60 30% 94%;
+    /* Improved contrast for dark theme */
+    --background: 20 10% 8%; /* Darker for better contrast */
+    --foreground: 60 30% 96%; /* Lighter for better contrast */
     
-    --card: 20 10% 15%;
-    --card-foreground: 60 30% 94%;
+    --card: 20 10% 12%; /* Darker for better contrast */
+    --card-foreground: 60 30% 96%; /* Lighter for better contrast */
     
-    --popover: 20 10% 15%;
-    --popover-foreground: 60 30% 94%;
+    --popover: 20 10% 12%; /* Darker for better contrast */
+    --popover-foreground: 60 30% 96%; /* Lighter for better contrast */
     
-    --primary: 120 35% 20%;
-    --primary-foreground: 60 30% 94%;
+    --primary: 120 35% 25%; /* Lighter for better contrast in dark mode */
+    --primary-foreground: 60 30% 96%; /* Lighter for better contrast */
     
-    --secondary: 45 100% 50%;
-    --secondary-foreground: 20 10% 10%;
+    --secondary: 45 100% 55%; /* Brighter gold for better contrast in dark mode */
+    --secondary-foreground: 20 10% 8%; /* Darker for better contrast */
     
-    --muted: 20 10% 20%;
-    --muted-foreground: 60 30% 80%;
+    --muted: 20 10% 18%; /* Slightly lighter for better contrast */
+    --muted-foreground: 60 30% 85%; /* Lighter for better contrast */
     
-    --accent: 120 35% 30%;
-    --accent-foreground: 60 30% 94%;
+    --accent: 120 35% 35%; /* Lighter for better contrast in dark mode */
+    --accent-foreground: 60 30% 96%; /* Lighter for better contrast */
     
-    --destructive: 0 62% 30%;
+    --destructive: 0 70% 45%; /* Brighter for better contrast in dark mode */
     --destructive-foreground: 0 0% 100%;
     
     --border: 20 10% 25%;
     --input: 20 10% 25%;
-    --ring: 45 100% 50%;
+    --ring: 45 100% 55%; /* Brighter for better contrast in dark mode */
   }
 
   * {

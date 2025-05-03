@@ -47,17 +47,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { categoryId, featured } = req.query;
       
-      let query = db.select().from(products);
+      // Start with a simple query
+      let productList;
       
-      if (categoryId && categoryId !== 'all') {
-        query = query.where(eq(products.categoryId, Number(categoryId)));
+      // Add conditional filtering based on query parameters
+      if (categoryId && categoryId !== 'all' && featured === 'true') {
+        // Filter by both category and featured
+        productList = await db.query.products.findMany({
+          where: and(
+            eq(products.categoryId, Number(categoryId)),
+            eq(products.featured, true)
+          ),
+          orderBy: [desc(products.createdAt)]
+        });
+      } else if (categoryId && categoryId !== 'all') {
+        // Filter by category only
+        productList = await db.query.products.findMany({
+          where: eq(products.categoryId, Number(categoryId)),
+          orderBy: [desc(products.createdAt)]
+        });
+      } else if (featured === 'true') {
+        // Filter by featured only
+        productList = await db.query.products.findMany({
+          where: eq(products.featured, true),
+          orderBy: [desc(products.createdAt)]
+        });
+      } else {
+        // No filters
+        productList = await db.query.products.findMany({
+          orderBy: [desc(products.createdAt)]
+        });
       }
       
-      if (featured === 'true') {
-        query = query.where(eq(products.featured, true));
-      }
-      
-      const productList = await query.orderBy(desc(products.createdAt));
       res.json(productList);
     } catch (error) {
       console.error('Error fetching products:', error);
