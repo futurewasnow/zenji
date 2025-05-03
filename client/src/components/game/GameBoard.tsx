@@ -14,6 +14,7 @@ interface GameBoardProps {
   isTutorial?: boolean;
   tutorialStep?: number;
   onNextTutorialStep?: () => void;
+  onSkipTutorial?: () => void;
 }
 
 const GameBoard = ({ 
@@ -21,7 +22,8 @@ const GameBoard = ({
   onAction, 
   isTutorial = false,
   tutorialStep = 0,
-  onNextTutorialStep
+  onNextTutorialStep,
+  onSkipTutorial
 }: GameBoardProps) => {
   const [selectedCard, setSelectedCard] = useState<{card: CardType, index: number} | null>(null);
   const [selectedPileType, setSelectedPileType] = useState<'futurePile' | 'pastPile' | null>(null);
