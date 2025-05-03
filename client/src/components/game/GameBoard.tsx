@@ -99,6 +99,15 @@ const GameBoard = ({
     onAction('nextRound');
   }, [onAction]);
   
+  const handleCheckCards = useCallback(() => {
+    onAction('checkCards');
+    
+    toast({
+      title: 'Checking Cards',
+      description: 'Remember: you can only check your cards once at the beginning of the game!',
+    });
+  }, [onAction, toast]);
+  
   return (
     <div className="relative w-full h-full flex flex-col">
       {/* Game status alerts */}

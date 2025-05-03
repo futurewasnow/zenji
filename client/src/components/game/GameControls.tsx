@@ -4,7 +4,8 @@ import {
   BellRing, 
   SkipForward, 
   PlaySquare,
-  RefreshCw
+  RefreshCw,
+  Eye
 } from 'lucide-react';
 
 interface GameControlsProps {
