@@ -14,7 +14,8 @@ import {
   callZenji,
   endRound,
   knockOutCard,
-  makeAIMove
+  makeAIMove,
+  checkCards
 } from '@/lib/game-engine';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -86,7 +87,7 @@ const PlayGame = () => {
     
     toast({
       title: 'Game Started',
-      description: 'Draw a card from the Future or Past pile to begin your turn.',
+      description: 'You can check your cards once at the beginning. Then draw a card to begin your turn.',
     });
   }, [playerName, playerCount, includeAI, toast]);
   
@@ -190,6 +191,10 @@ const PlayGame = () => {
           if (newState.status === 'round_end') {
             newState = endRound(newState);
           }
+          break;
+        
+        case 'checkCards':
+          newState = checkCards(newState, currentPlayer.id);
           break;
           
         default:

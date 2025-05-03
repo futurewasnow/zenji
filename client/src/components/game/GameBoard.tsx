@@ -181,6 +181,8 @@ const GameBoard = ({
             isGameOver={isGameOver}
             onNextRound={handleNextRound}
             roundNumber={gameState.roundNumber}
+            onCheckCards={handleCheckCards}
+            canCheckCards={!selectedCard && !selectedPileType && !isGameOver && !isRoundEnd && !currentPlayer.hasCheckedCards}
           />
         </div>
         

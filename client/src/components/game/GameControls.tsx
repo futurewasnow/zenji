@@ -17,6 +17,8 @@ interface GameControlsProps {
   isGameOver: boolean;
   onNextRound: () => void;
   roundNumber: number;
+  onCheckCards?: () => void;
+  canCheckCards?: boolean;
 }
 
 const GameControls = ({
@@ -27,7 +29,9 @@ const GameControls = ({
   isRoundEnd,
   isGameOver,
   onNextRound,
-  roundNumber
+  roundNumber,
+  onCheckCards,
+  canCheckCards = false
 }: GameControlsProps) => {
   return (
     <div className="bg-white p-4 rounded-lg shadow-md w-full">
@@ -79,6 +83,18 @@ const GameControls = ({
               <SkipForward className="mr-2 h-4 w-4" />
               End Turn
             </Button>
+            
+            {onCheckCards && (
+              <Button 
+                className="w-full"
+                variant="secondary"
+                onClick={onCheckCards}
+                disabled={!canCheckCards || !isCurrentPlayerTurn}
+              >
+                <Eye className="mr-2 h-4 w-4" />
+                Check Cards
+              </Button>
+            )}
           </>
         )}
       </div>
