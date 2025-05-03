@@ -198,6 +198,7 @@ const GameBoard = ({
         <TutorialOverlay 
           step={tutorialStep}
           onNext={onNextTutorialStep}
+          onSkip={onSkipTutorial}
         />
       )}
     </div>

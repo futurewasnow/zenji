@@ -102,6 +102,12 @@ const GameTutorial = () => {
   const handleNextTutorialStep = useCallback(() => {
     setTutorialStep(prevStep => prevStep + 1);
   }, []);
+  
+  // Handle skip tutorial
+  const handleSkipTutorial = useCallback(() => {
+    // Set the step to the end of tutorial steps to hide overlay
+    setTutorialStep(9); // Set to the index of the last step + 1
+  }, []);
 
   // Handle game actions during tutorial
   const handleGameAction = useCallback((action: string, payload?: any) => {
@@ -241,6 +247,7 @@ const GameTutorial = () => {
                 isTutorial={true}
                 tutorialStep={tutorialStep}
                 onNextTutorialStep={handleNextTutorialStep}
+                onSkipTutorial={handleSkipTutorial}
               />
             ) : (
               <div className="h-[600px] flex items-center justify-center">
