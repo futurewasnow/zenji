@@ -97,7 +97,7 @@ const Home = () => {
       </section>
       
       {/* Play Online section */}
-      <section id="play-online" className="py-20 px-4 md:px-10 bg-gradient-to-b from-jungle-green to-mystic-purple text-white">
+      <section id="play-online" className="py-20 px-4 md:px-10 bg-gradient-to-b from-jungle-green via-[#113630] to-[#2c1a47] text-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="font-cinzel text-4xl text-center text-zen-gold mb-4">Play Zenji Online</h2>
           <p className="text-center text-xl mb-16 max-w-3xl mx-auto">
@@ -106,34 +106,34 @@ const Home = () => {
           
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {/* Feature 1 */}
-            <div className="bg-white bg-opacity-10 rounded-lg p-6 text-center hover:transform hover:scale-105 transition duration-300">
+            <div className="bg-white bg-opacity-20 rounded-lg p-6 text-center hover:transform hover:scale-105 transition duration-300">
               <div className="w-16 h-16 rounded-full bg-zen-gold text-jungle-green flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-users text-2xl"></i>
               </div>
               <h3 className="font-cinzel text-xl text-zen-gold mb-3">Multiplayer Mode</h3>
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-white">
                 Play with friends online in real-time matches for 2-4 players with full game rules and mechanics.
               </p>
             </div>
             
             {/* Feature 2 */}
-            <div className="bg-white bg-opacity-10 rounded-lg p-6 text-center hover:transform hover:scale-105 transition duration-300">
+            <div className="bg-white bg-opacity-20 rounded-lg p-6 text-center hover:transform hover:scale-105 transition duration-300">
               <div className="w-16 h-16 rounded-full bg-zen-gold text-jungle-green flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-robot text-2xl"></i>
               </div>
               <h3 className="font-cinzel text-xl text-zen-gold mb-3">AI Opponents</h3>
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-white">
                 Practice against intelligent AI opponents with different difficulty levels to sharpen your Zenji skills.
               </p>
             </div>
             
             {/* Feature 3 */}
-            <div className="bg-white bg-opacity-10 rounded-lg p-6 text-center hover:transform hover:scale-105 transition duration-300">
+            <div className="bg-white bg-opacity-20 rounded-lg p-6 text-center hover:transform hover:scale-105 transition duration-300">
               <div className="w-16 h-16 rounded-full bg-zen-gold text-jungle-green flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-graduation-cap text-2xl"></i>
               </div>
               <h3 className="font-cinzel text-xl text-zen-gold mb-3">Interactive Tutorial</h3>
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-white">
                 Learn the game through our step-by-step interactive tutorial with guided gameplay experience.
               </p>
             </div>

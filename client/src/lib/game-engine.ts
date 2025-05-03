@@ -279,10 +279,17 @@ export function checkCards(state: GameState, playerId: string): GameState {
   const updatedPlayers = [...state.players];
   const cardsVisible = { ...updatedPlayers[playerIndex].cardsVisible };
   
-  // Make all cards visible
-  updatedPlayers[playerIndex].monkeyMind.forEach(card => {
-    cardsVisible[card.id] = true;
-  });
+  // Only make the two outermost cards visible (first and last card in hand)
+  const monkeyMindCards = updatedPlayers[playerIndex].monkeyMind;
+  if (monkeyMindCards.length > 0) {
+    // First card (leftmost)
+    cardsVisible[monkeyMindCards[0].id] = true;
+    
+    // Last card (rightmost)
+    if (monkeyMindCards.length > 1) {
+      cardsVisible[monkeyMindCards[monkeyMindCards.length - 1].id] = true;
+    }
+  }
   
   updatedPlayers[playerIndex] = {
     ...updatedPlayers[playerIndex],
