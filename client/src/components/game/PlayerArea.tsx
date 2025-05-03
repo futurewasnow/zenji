@@ -88,7 +88,7 @@ const PlayerArea = ({
                   <Card
                     card={card}
                     index={index}
-                    faceDown={!isCurrentPlayer || (!player.cardsVisible[card.id] && !(card.value === 5))}
+                    faceDown={!isCurrentPlayer || (!player.cardsVisible[card.id] && card.value !== 5)}
                     isSelected={isCurrentPlayer && selectedCardIndex === index}
                     isSelectable={isCurrentPlayer && !isDisabled && (!hasDrawnCard || selectedCardIndex !== -1)}
                     onClick={() => {
