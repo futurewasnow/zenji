@@ -4,8 +4,7 @@ import {
   BellRing, 
   SkipForward, 
   PlaySquare,
-  RefreshCw,
-  Eye
+  RefreshCw
 } from 'lucide-react';
 
 interface GameControlsProps {
@@ -17,8 +16,6 @@ interface GameControlsProps {
   isGameOver: boolean;
   onNextRound: () => void;
   roundNumber: number;
-  onCheckCards?: () => void;
-  canCheckCards?: boolean;
 }
 
 const GameControls = ({
@@ -29,9 +26,7 @@ const GameControls = ({
   isRoundEnd,
   isGameOver,
   onNextRound,
-  roundNumber,
-  onCheckCards,
-  canCheckCards = false
+  roundNumber
 }: GameControlsProps) => {
   return (
     <div className="bg-white p-4 rounded-lg shadow-md w-full">
@@ -83,18 +78,6 @@ const GameControls = ({
               <SkipForward className="mr-2 h-4 w-4" />
               End Turn
             </Button>
-            
-            {onCheckCards && (
-              <Button 
-                className="w-full"
-                variant="secondary"
-                onClick={onCheckCards}
-                disabled={!canCheckCards || !isCurrentPlayerTurn}
-              >
-                <Eye className="mr-2 h-4 w-4" />
-                Check Cards
-              </Button>
-            )}
           </>
         )}
       </div>

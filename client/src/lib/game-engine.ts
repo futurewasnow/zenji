@@ -23,8 +23,6 @@ export interface Player {
   score: number;
   isActive: boolean;
   hasCalledZenji: boolean;
-  hasCheckedCards: boolean;
-  cardsVisible: {[cardId: string]: boolean}; // To track which individual cards are visible
 }
 
 export interface GameState {
@@ -204,9 +202,7 @@ export function initializeGame(playerNames: string[], includeAI: boolean = false
     scorecard: [],
     score: 0,
     isActive: index === 0, // First player is active
-    hasCalledZenji: false,
-    hasCheckedCards: false,
-    cardsVisible: {}
+    hasCalledZenji: false
   }));
   
   // Add AI players if requested
@@ -222,24 +218,14 @@ export function initializeGame(playerNames: string[], includeAI: boolean = false
         scorecard: [],
         score: 0,
         isActive: false,
-        hasCalledZenji: false,
-        hasCheckedCards: false,
-        cardsVisible: {}
+        hasCalledZenji: false
       });
     }
   }
   
   // Deal 4 cards to each player's Monkey Mind
   players.forEach(player => {
-    const cards = deck.splice(0, 4);
-    player.monkeyMind = cards;
-    
-    // Initialize cardsVisible with all cards set to false (face down)
-    const cardVisibility: {[cardId: string]: boolean} = {};
-    cards.forEach(card => {
-      cardVisibility[card.id] = false;
-    });
-    player.cardsVisible = cardVisibility;
+    player.monkeyMind = deck.splice(0, 4);
   });
   
   return {
@@ -259,77 +245,6 @@ export function startGame(state: GameState): GameState {
   return {
     ...state,
     status: 'active'
-  };
-}
-
-// Function to check cards - can only be done once at the beginning of the game
-export function checkCards(state: GameState, playerId: string): GameState {
-  const playerIndex = state.players.findIndex(p => p.id === playerId);
-  
-  if (playerIndex === -1) {
-    throw new Error('Player not found');
-  }
-  
-  // Check if player has already checked cards
-  if (state.players[playerIndex].hasCheckedCards && !state.players[playerIndex].hasCalledZenji) {
-    throw new Error('You have already checked your cards');
-  }
-  
-  // Update player's cards to be visible
-  const updatedPlayers = [...state.players];
-  const cardsVisible = { ...updatedPlayers[playerIndex].cardsVisible };
-  
-  // Only make the two outermost cards visible (first and last card in hand)
-  const monkeyMindCards = updatedPlayers[playerIndex].monkeyMind;
-  if (monkeyMindCards.length > 0) {
-    // First card (leftmost)
-    cardsVisible[monkeyMindCards[0].id] = true;
-    
-    // Last card (rightmost)
-    if (monkeyMindCards.length > 1) {
-      cardsVisible[monkeyMindCards[monkeyMindCards.length - 1].id] = true;
-    }
-  }
-  
-  updatedPlayers[playerIndex] = {
-    ...updatedPlayers[playerIndex],
-    hasCheckedCards: true,
-    cardsVisible: cardsVisible
-  };
-  
-  return {
-    ...state,
-    players: updatedPlayers
-  };
-}
-
-// Function to update card visibility based on rules
-// Cards with value 5 can stay visible, others become hidden after view
-export function updateCardVisibility(state: GameState, playerId: string): GameState {
-  const playerIndex = state.players.findIndex(p => p.id === playerId);
-  
-  if (playerIndex === -1) {
-    throw new Error('Player not found');
-  }
-  
-  // Update card visibility based on rules
-  const updatedPlayers = [...state.players];
-  const cardsVisible = { ...updatedPlayers[playerIndex].cardsVisible };
-  
-  // All cards become hidden except those with value 5
-  updatedPlayers[playerIndex].monkeyMind.forEach(card => {
-    // Cards with value 5 can stay visible, others become hidden
-    cardsVisible[card.id] = (card.value === 5);
-  });
-  
-  updatedPlayers[playerIndex] = {
-    ...updatedPlayers[playerIndex],
-    cardsVisible: cardsVisible
-  };
-  
-  return {
-    ...state,
-    players: updatedPlayers
   };
 }
 
@@ -396,18 +311,11 @@ export function exchangeMonkeyMindCard(
   const newMonkeyMind = [...state.players[playerIndex].monkeyMind];
   newMonkeyMind[replaceIndex] = newCard;
   
-  // Update card visibility
-  const cardsVisible = { ...state.players[playerIndex].cardsVisible };
-  
-  // New card is always visible initially
-  cardsVisible[newCard.id] = true;
-  
   // Create updated players array
   const updatedPlayers = [...state.players];
   updatedPlayers[playerIndex] = {
     ...updatedPlayers[playerIndex],
-    monkeyMind: newMonkeyMind,
-    cardsVisible: cardsVisible
+    monkeyMind: newMonkeyMind
   };
   
   return {
