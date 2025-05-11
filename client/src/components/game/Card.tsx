@@ -97,7 +97,8 @@ const Card = ({
   return (
     <motion.div
       className={cn(
-        "relative w-20 h-28 rounded-lg overflow-hidden cursor-pointer transition-all duration-200 card-shadow",
+        "relative w-20 h-28 rounded-lg border-2 overflow-hidden cursor-pointer transition-all duration-200 card-shadow",
+        getCardBackground(),
         isSelected && "ring-4 ring-zen-gold",
         !isSelectable && "opacity-70 cursor-default",
         className
@@ -110,64 +111,50 @@ const Card = ({
     >
       {faceDown ? (
         // Back of card
-        <div className="w-full h-full">
-          <img 
-            src="/images/cards/card-back.svg" 
-            alt="Card back" 
-            className="w-full h-full object-cover"
-          />
+        <div className="w-full h-full flex items-center justify-center">
+          <span className="font-cinzel text-2xl text-zen-gold">Z</span>
         </div>
       ) : (
-        // Front of card with image
-        <div className="w-full h-full relative">
-          {/* Card background image */}
-          <img 
-            src={card.imageUrl || `/images/cards/${card.element}-template.svg`}
-            alt={card.name}
-            className="w-full h-full object-cover"
-          />
-          
-          {/* Card content overlay */}
-          <div className="absolute inset-0 p-1 flex flex-col">
-            <div className="flex justify-between items-center mb-1">
-              <div className="w-6 h-6 flex items-center justify-center bg-white/70 rounded-full">
-                {getElementIcon()}
-              </div>
-              <div className={`text-sm font-bold bg-white/70 rounded-full w-6 h-6 flex items-center justify-center ${getTextColor()}`}>
-                {card.value > 0 ? card.value : card.value === 0 ? '0' : card.value}
-              </div>
+        // Front of card
+        <div className="w-full h-full p-1 flex flex-col">
+          <div className="flex justify-between items-center mb-1">
+            <div className="w-6 h-6 flex items-center justify-center">
+              {getElementIcon()}
             </div>
-            
-            <div className="flex-grow flex items-center justify-center">
-              {card.type === 'avatar' ? (
-                <div className="text-center bg-white/70 p-1 rounded">
-                  <div className="font-cinzel text-xs">Avatar</div>
-                  <div className={`text-xs capitalize ${getTextColor()}`}>{card.element}</div>
+            <div className={`text-sm font-bold ${getTextColor()}`}>
+              {card.value > 0 ? card.value : card.value === 0 ? '0' : card.value}
+            </div>
+          </div>
+          
+          <div className="flex-grow flex items-center justify-center">
+            {card.type === 'avatar' ? (
+              <div className="text-center">
+                <div className="font-cinzel text-xs">Avatar</div>
+                <div className={`text-xs capitalize ${getTextColor()}`}>{card.element}</div>
+              </div>
+            ) : (
+              card.type === 'zen' ? (
+                <div className="text-center">
+                  <div className="font-cinzel text-xs">Zen</div>
+                  <div className={`text-xs ${getTextColor()}`}>{card.name}</div>
                 </div>
               ) : (
-                card.type === 'zen' ? (
-                  <div className="text-center bg-white/70 p-1 rounded">
-                    <div className="font-cinzel text-xs">Zen</div>
-                    <div className={`text-xs ${getTextColor()}`}>{card.name.split(' ').slice(-1)[0]}</div>
-                  </div>
-                ) : (
-                  <div className="text-center bg-white/70 p-1 rounded">
-                    <div className={`text-xs capitalize ${getTextColor()}`}>{card.element}</div>
-                    {card.value <= 4 && (
-                      <div className="text-xs">EP {card.value}</div>
-                    )}
-                  </div>
-                )
-              )}
-            </div>
-            
-            {card.power && (
-              <div className="text-xs bg-white/70 rounded-sm px-1 flex items-center justify-center mb-1">
-                {getPowerIcon()}
-                <span className="ml-1 capitalize">{card.power}</span>
-              </div>
+                <div className="text-center">
+                  <div className={`text-xs capitalize ${getTextColor()}`}>{card.element}</div>
+                  {card.value <= 4 && (
+                    <div className="text-xs">EP {card.value}</div>
+                  )}
+                </div>
+              )
             )}
           </div>
+          
+          {card.power && (
+            <div className="text-xs bg-white/70 rounded-sm px-1 flex items-center justify-center">
+              {getPowerIcon()}
+              <span className="ml-1 capitalize">{card.power}</span>
+            </div>
+          )}
         </div>
       )}
     </motion.div>

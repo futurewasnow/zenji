@@ -5,7 +5,6 @@ import { ChevronRight, LightbulbIcon } from 'lucide-react';
 interface TutorialOverlayProps {
   step: number;
   onNext?: () => void;
-  onSkip?: () => void;
 }
 
 const tutorialSteps = [
@@ -56,12 +55,7 @@ const tutorialSteps = [
   }
 ];
 
-const TutorialOverlay = ({ step, onNext, onSkip }: TutorialOverlayProps) => {
-  // If we've reached beyond the last step, don't render anything
-  if (step >= tutorialSteps.length) {
-    return null;
-  }
-  
+const TutorialOverlay = ({ step, onNext }: TutorialOverlayProps) => {
   const currentStep = tutorialSteps[step] || tutorialSteps[0];
   
   // Determine positioning based on step
@@ -95,20 +89,7 @@ const TutorialOverlay = ({ step, onNext, onSkip }: TutorialOverlayProps) => {
           </div>
         </div>
         
-        <div className="flex justify-between mt-4">
-          {/* Skip button */}
-          {onSkip && (
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="text-gray-500 hover:bg-gray-100"
-              onClick={onSkip}
-            >
-              Skip Tutorial
-            </Button>
-          )}
-          
-          {/* Next/Start Playing button */}
+        <div className="flex justify-end mt-4">
           <Button 
             variant="default" 
             size="sm" 

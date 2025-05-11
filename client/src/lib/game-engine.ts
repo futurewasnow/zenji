@@ -53,8 +53,7 @@ export function createDeck(): Card[] {
         type: 'element',
         element,
         value,
-        power: getPowerForValue(value),
-        imageUrl: `/images/cards/${element}-template.svg`
+        power: getPowerForValue(value)
       });
     }
     
@@ -66,8 +65,7 @@ export function createDeck(): Card[] {
         type: 'element',
         element,
         value,
-        description: `Elemental Point card worth ${value} points`,
-        imageUrl: `/images/cards/${element}-template.svg`
+        description: `Elemental Point card worth ${value} points`
       });
     }
     
@@ -79,8 +77,7 @@ export function createDeck(): Card[] {
       element,
       value: 5,
       power: 'avatar',
-      description: `Avatar of ${element.charAt(0).toUpperCase() + element.slice(1)}: Worth 5 points in Monkey Mind, but all ${element} cards in your Monkey Mind become worth 0 points if this is in your Higher Mind.`,
-      imageUrl: `/images/cards/avatar-template.svg`
+      description: `Avatar of ${element.charAt(0).toUpperCase() + element.slice(1)}: Worth 5 points in Monkey Mind, but all ${element} cards in your Monkey Mind become worth 0 points if this is in your Higher Mind.`
     });
   });
   
@@ -91,8 +88,7 @@ export function createDeck(): Card[] {
     type: 'power',
     element: 'fire',
     value: 13,
-    description: 'High value card that increases your Monkey Mind score',
-    imageUrl: '/images/cards/power-template.svg'
+    description: 'High value card that increases your Monkey Mind score'
   });
   
   deck.push({
@@ -101,8 +97,7 @@ export function createDeck(): Card[] {
     type: 'power',
     element: 'water',
     value: 13,
-    description: 'High value card that increases your Monkey Mind score',
-    imageUrl: '/images/cards/power-template.svg'
+    description: 'High value card that increases your Monkey Mind score'
   });
   
   // Add Zen Kings (2 cards, earth and air)
@@ -112,8 +107,7 @@ export function createDeck(): Card[] {
     type: 'zen',
     element: 'earth',
     value: -1,
-    description: 'Reduces your Monkey Mind score by 1',
-    imageUrl: '/images/cards/zen-template.svg'
+    description: 'Reduces your Monkey Mind score by 1'
   });
   
   deck.push({
@@ -122,8 +116,7 @@ export function createDeck(): Card[] {
     type: 'zen',
     element: 'air',
     value: -1,
-    description: 'Reduces your Monkey Mind score by 1',
-    imageUrl: '/images/cards/zen-template.svg'
+    description: 'Reduces your Monkey Mind score by 1'
   });
   
   // Add Zero Mind cards (4 cards)
@@ -134,8 +127,7 @@ export function createDeck(): Card[] {
       type: 'zen',
       element: 'none',
       value: 0,
-      description: 'Worth 0 points in Monkey Mind. Cannot be Knocked Out.',
-      imageUrl: '/images/cards/zen-template.svg'
+      description: 'Worth 0 points in Monkey Mind. Cannot be Knocked Out.'
     });
   }
   
@@ -146,8 +138,7 @@ export function createDeck(): Card[] {
     type: 'zen',
     element: 'none',
     value: -2,
-    description: 'Reduces your Monkey Mind score by 2. This is the meditating monkey!',
-    imageUrl: '/images/cards/zen-template.svg'
+    description: 'Reduces your Monkey Mind score by 2. This is the meditating monkey!'
   });
   
   return deck;
